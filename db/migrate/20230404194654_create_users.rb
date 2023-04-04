@@ -1,7 +1,7 @@
 class CreateUsers < ActiveRecord::Migration[7.0]
   def change
     create_table :users do |t|
-      t.integer :dummy_json_id, uniq: true, null: false
+      t.integer :dummy_json_id, null: false
       t.string :first_name
       t.string :middle_name
       t.string :last_name
@@ -13,6 +13,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
 
       t.timestamps
       t.index [:email]
+      t.index [:dummy_json_id], unique: true
     end
   end
 end

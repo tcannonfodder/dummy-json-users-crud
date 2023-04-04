@@ -23,6 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_194654) do
     t.text "user_agent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["dummy_json_id"], name: "index_users_on_dummy_json_id", unique: true
     t.index ["email"], name: "index_users_on_email"
   end
 
