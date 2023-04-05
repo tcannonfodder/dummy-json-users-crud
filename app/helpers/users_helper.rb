@@ -23,4 +23,8 @@ module UsersHelper
       return "✅"
     end
   end
+
+  def bulk_actions_user_checkbox(user)
+    check_box_tag(field_name(:bulk_action, :user_ids, multiple: true), user.id, false, form: 'bulk-actions')
+  end
 end

@@ -1,5 +1,6 @@
 <tbody id="<%= dom_id(user, :row) %>">
   <tr>
+    <td><%= bulk_actions_user_checkbox(user) %></td>
     <td><%= user_status(user) %></td>
     <td><%= user_name(user) %></td>
     <td><%= mail_to(user.email) %></td>
