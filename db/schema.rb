@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_04_194654) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_05_150445) do
   create_table "users", force: :cascade do |t|
     t.integer "dummy_json_id", null: false
     t.string "first_name"
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_194654) do
     t.text "user_agent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "notes"
+    t.integer "status", default: 0
     t.index ["dummy_json_id"], name: "index_users_on_dummy_json_id", unique: true
     t.index ["email"], name: "index_users_on_email"
   end
