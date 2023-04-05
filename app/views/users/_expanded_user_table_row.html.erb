@@ -11,6 +11,50 @@
     </td>
   </tr>
   <tr>
-    <td colspan="6"><code><%= user.user_agent %></code></td>
+    <td colspan="6">
+      <details open>
+        <summary>User Agent</summary>
+        <code><%= user.user_agent %></code>
+      </details>
+
+      <%= form_with model: user, data: { turbo_stream: true } do |f| %>
+        <fieldset>
+          <legend>Status</legend>
+          <ul>
+            <li>
+              <%= f.radio_button :status, :unknown %>
+              <%= f.label :status, value: :unknown do %>
+                <%= status_badge(:unknown) %> Unknown
+              <% end %>
+            </li>
+            <li>
+              <%= f.radio_button :status, :warn %>
+              <%= f.label :status, value: :warn do %>
+                <%= status_badge(:warn) %> Warn
+              <% end %>
+            </li>
+            <li>
+              <%= f.radio_button :status, :alert %>
+              <%= f.label :status, value: :alert do %>
+                <%= status_badge(:alert) %> Alert
+              <% end %>
+            </li>
+            <li>
+              <%= f.radio_button :status, :approved %>
+              <%= f.label :status, value: :approved do %>
+                <%= status_badge(:approved) %> Approved
+              <% end %>
+            </li>
+          </ul>
+        </fieldset>
+
+        <%= f.text_area :notes, placeholder: "Any security notes here…" %>
+
+        <section class="actions">
+          <%= f.button "Cancel", type: :submit, formaction: collapse_user_path(user), formmethod: :get %>
+          <%= f.button "Update", type: "submit" %>
+        </section>
+      <% end %>
+    </td>
   </tr>
 </tbody>
