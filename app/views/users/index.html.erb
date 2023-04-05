@@ -3,23 +3,23 @@
 <%= form_with id: "bulk-actions" do |f| %>
   <ul>
     <li>
-      <%= f.button name: :status, value: :unknown, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users as unknown?"} do %>
+      <%= f.button name: bulk_actions_status_field_name, value: :unknown, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users as unknown?"} do %>
         Mark selected as <%= status_badge(:unknown) %> Unknown
       <% end %>
     </li>
     <li>
-      <%= f.button name: :status, value: :warning, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users with a warning?"} do %>
+      <%= f.button name: bulk_actions_status_field_name, value: :warn, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users with a warning?"} do %>
         Mark selected with a <%= status_badge(:warn) %> warning
       <% end %>
     </li>
     <li>
-      <%= f.button name: :status, value: :alert, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users with an alert?"} do %>
+      <%= f.button name: bulk_actions_status_field_name, value: :alert, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users with an alert?"} do %>
         Mark selected with an <%= status_badge(:alert) %> Alert
       <% end %>
     </li>
 
     <li>
-      <%= f.button name: :status, value: :approved, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users as approved?"} do %>
+      <%= f.button name: bulk_actions_status_field_name, value: :approved, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users as approved?"} do %>
         Mark selected as <%= status_badge(:approved) %> Approved
       <% end %>
     </li>
