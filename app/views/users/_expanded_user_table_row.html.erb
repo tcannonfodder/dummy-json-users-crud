@@ -1,5 +1,6 @@
 <tbody id="<%= dom_id(user, :row) %>">
   <tr>
+    <td><%= user_status(user) %></td>
     <td><%= user_name(user) %></td>
     <td><%= mail_to(user.email) %></td>
     <td><%= link_to(user.domain, domain_url(user.domain)) %></td>
