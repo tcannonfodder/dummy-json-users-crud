@@ -35,3 +35,4 @@
 /config/master.key
 
 assignment.md
+*.rdb
