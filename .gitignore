@@ -36,3 +36,5 @@
 
 assignment.md
 *.rdb
+
+.DS_Store
