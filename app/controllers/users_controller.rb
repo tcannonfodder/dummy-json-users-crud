@@ -38,12 +38,22 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user.update!(update_params)
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to action: :show}
+    end
   end
 
   def destroy
   end
 
   protected
+
+  def update_params
+    params.require(:user).permit(:status, :notes)
+  end
 
   def load_user
     @user = User.find(params[:id])
