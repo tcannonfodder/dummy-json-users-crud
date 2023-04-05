@@ -8,7 +8,11 @@ module UsersHelper
   end
 
   def user_status(user)
-    case user.status.to_sym
+    status_badge(user.status)
+  end
+
+  def status_badge(status)
+    case status.to_sym
     when :unknown
       return "❓"
     when :warn
