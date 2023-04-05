@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   PER_PAGE = 20
   before_action :build_pagination_calculator
+  before_action :load_user, only: [:expand, :collapse, :show, :edit, :update, :destroy]
 
   def index
     @users = current_page_association
@@ -13,6 +14,24 @@ class UsersController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.turbo_stream
+      format.html
+    end
+  end
+
+  def expand
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to action: :show}
+    end
+  end
+
+  def collapse
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to action: :index}
+    end
   end
 
   def edit
@@ -25,6 +44,10 @@ class UsersController < ApplicationController
   end
 
   protected
+
+  def load_user
+    @user = User.find(params[:id])
+  end
 
   def base_association
     User.all

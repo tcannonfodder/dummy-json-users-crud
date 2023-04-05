@@ -1,0 +1,15 @@
+<tbody id="<%= dom_id(user, :row) %>">
+  <tr>
+    <td><%= user_name(user) %></td>
+    <td><%= mail_to(user.email) %></td>
+    <td><%= link_to(user.domain, domain_url(user.domain)) %></td>
+    <td><code><%= user.ip_address %></code></td>
+    <td><code><%= user.mac_address %></code></td>
+    <td>
+      <%= link_to "Close", collapse_user_path(user), data: { turbo_stream: true } %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="6"><code><%= user.user_agent %></code></td>
+  </tr>
+</tbody>

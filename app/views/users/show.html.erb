@@ -1,2 +1,29 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>User Details</h1>
+
+
+<table>
+  <tr>
+    <th>Name</th>
+    <td><%= user_name(@user) %></td>
+  </tr>
+  <tr>
+    <th>Email</th>
+    <td><%= mail_to(@user.email) %></td>
+  </tr>
+  <tr>
+    <th>Domain</th>
+    <td><%= link_to(@user.domain, domain_url(@user.domain)) %></td>
+  </tr>
+  <tr>
+    <th>IP Address</th>
+    <td><code><%= @user.ip_address %></code></td>
+  </tr>
+  <tr>
+    <th>MAC Address</th>
+    <td><code><%= @user.mac_address %></code></td>
+  </tr>
+  <tr>
+    <th>User Agent</th>
+    <td><code><%= @user.user_agent %></code></td>
+  </tr>
+</table>

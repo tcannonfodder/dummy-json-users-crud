@@ -3,18 +3,16 @@
 <table>
   <thead>
     <tr>
-      <td>Name</td>
-      <td>Email</td>
-      <td>Domain</td>
-      <td>IP Address</td>
-      <td>MAC Address</td>
-      <td></td>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Domain</th>
+      <th>IP Address</th>
+      <th>MAC Address</th>
+      <th></th>
     </tr>
   </thead>
 
-  <tbody>
   <%= render partial: "user_table_row", collection: @users, as: :user, cache: true %>
-  </tbody>
 </table>
 
 <%= form_with url: users_url, method: :get do |f| %>

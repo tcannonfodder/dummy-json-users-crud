@@ -1,10 +1,12 @@
-<tr>
-  <td><%= user_name(user) %></td>
-  <td><%= mail_to(user.email) %></td>
-  <td><%= link_to(user.domain, domain_url(user.domain)) %></td>
-  <td><pre><%= user.ip_address %></pre></td>
-  <td><pre><%= user.mac_address %></pre></td>
-  <td>
-    <%= link_to "Details", user_url(user) %>
-  </td>
-</tr>
+<tbody id="<%= dom_id(user, :row) %>">
+  <tr>
+    <td><%= user_name(user) %></td>
+    <td><%= mail_to(user.email) %></td>
+    <td><%= link_to(user.domain, domain_url(user.domain)) %></td>
+    <td><pre><%= user.ip_address %></pre></td>
+    <td><pre><%= user.mac_address %></pre></td>
+    <td>
+      <%= link_to "Details", expand_user_path(user), data: { turbo_stream: true } %>
+    </td>
+  </tr>
+</tbody>
