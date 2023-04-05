@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
     collection do
       delete :destroy_multiple
-      delete :update_multiple
+      patch :update_multiple
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
