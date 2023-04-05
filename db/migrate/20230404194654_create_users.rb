@@ -3,7 +3,6 @@ class CreateUsers < ActiveRecord::Migration[7.0]
     create_table :users do |t|
       t.integer :dummy_json_id, null: false
       t.string :first_name
-      t.string :middle_name
       t.string :last_name
       t.string :email
       t.string :domain

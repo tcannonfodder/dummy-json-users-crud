@@ -14,7 +14,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_04_194654) do
   create_table "users", force: :cascade do |t|
     t.integer "dummy_json_id", null: false
     t.string "first_name"
-    t.string "middle_name"
     t.string "last_name"
     t.string "email"
     t.string "domain"
