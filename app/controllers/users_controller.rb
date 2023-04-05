@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     @pagination_calculator = PaginationCalculator.new(
       current_page: params[:page].to_i,
       per_page: PER_PAGE,
-      total_items: base_association,
+      total_items: base_association.count,
       current_item_count: current_page_association.count
     )
   end
