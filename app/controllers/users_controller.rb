@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   PER_PAGE = 20
   before_action :build_pagination_calculator, only: [:index]
   before_action :load_user, only: [:expand, :collapse, :show, :edit, :update, :destroy]
+  before_action :load_bulk_action_users, only: [:destroy_multiple, :update_multiple]
 
   def index
     @users = current_page_association
@@ -47,12 +48,41 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user.destroy
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to action: :index}
+    end
+  end
+
+  def destroy_multiple
+    @bulk_action_users.destroy_all
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to action: :index}
+    end
+  end
+
+  def update_multiple
+    @bulk_action_users.update_all(status: bulk_action_params[:status])
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to action: :index}
+    end
   end
 
   protected
 
+  def load_bulk_action_users
+    @bulk_action_users = User.where(id: bulk_action_params[:user_ids])
+  end
+
   def update_params
     params.require(:user).permit(:status, :notes)
+  end
+
+  def bulk_action_params
+    params.require(:bulk_action).permit(:status, user_ids: [])
   end
 
   def load_user
