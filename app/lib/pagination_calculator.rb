@@ -2,10 +2,10 @@ class PaginationCalculator
   attr_accessor :current_page, :per_page, :total_items, :current_item_count
 
   def initialize(current_page:, per_page:, total_items:, current_item_count:)
-    self.current_page = current_page
+    self.current_page = [current_page, 1].max
     self.per_page = per_page
     self.total_items = total_items
-    self.current_item_count
+    self.current_item_count = current_item_count
   end
 
   def self.pagination_offset(page:, per_page:)
@@ -18,7 +18,7 @@ class PaginationCalculator
   end
 
   def has_previous_page?
-    page < 2
+    current_page > 1
   end
 
   def next_page
