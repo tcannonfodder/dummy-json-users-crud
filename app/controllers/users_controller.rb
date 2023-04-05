@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   PER_PAGE = 20
-  before_action :build_pagination_calculator
+  before_action :build_pagination_calculator, only: [:index]
   before_action :load_user, only: [:expand, :collapse, :show, :edit, :update, :destroy]
 
   def index
