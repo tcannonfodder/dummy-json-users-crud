@@ -10,7 +10,6 @@ class LoadPageIntoUsersJob < ApplicationJob
       User.create!({
         dummy_json_id: user_json["id"],
         first_name: user_json["firstName"],
-        middle_name: user_json["middleName"],
         last_name: user_json["lastName"],
         email: user_json["email"],
         domain: user_json["domain"],
