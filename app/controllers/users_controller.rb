@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
   PER_PAGE = 20
   before_action :build_pagination_calculator, only: [:index]
+  before_action :build_filter_and_search, only: [:index]
   before_action :load_user, only: [:expand, :collapse, :show, :edit, :update, :destroy]
   before_action :load_bulk_action_users, only: [:destroy_multiple, :update_multiple]
+
+  helper_method :filter_and_search_params
 
   def index
     @users = current_page_association
@@ -75,6 +78,14 @@ class UsersController < ApplicationController
 
   def load_bulk_action_users
     @bulk_action_users = User.where(id: bulk_action_params[:user_ids])
+  end
+
+  def filter_and_search_params
+    params.permit(filter_and_search: [:status, :note_presence, :note, :email, :name])
+  end
+
+  def build_filter_and_search
+    @filter_and_search = FilterAndSearch.new(filter_and_search_params[:filter_and_search])
   end
 
   def update_params

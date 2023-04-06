@@ -32,6 +32,45 @@
   </ul>
 <% end %>
 
+<%= form_with model: @filter_and_search, url: users_url, method: :get do |f| %>
+  <h2>Filter &amp; Search</h2>
+  <fieldset>
+    <legend>Status</legend>
+
+    <ul>
+      <li><%= f.radio_button :status, nil %><%= f.label :status, "👥 All users", value: nil %></li>
+      <li>
+        <%= f.radio_button :status, :unknown %>
+        <%= f.label :status, value: :unknown do %>
+          <%= status_badge(:unknown) %> Unknown users
+        <% end %>
+      </li>
+      <li>
+        <%= f.radio_button :status, :warn %>
+        <%= f.label :status, value: :warn do %>
+          <%= status_badge(:warn) %> Users with warnings
+        <% end %>
+      </li>
+      <li>
+        <%= f.radio_button :status, :alert %>
+        <%= f.label :status, value: :alert do %>
+          <%= status_badge(:alert) %> Users with an alert
+        <% end %>
+      </li>
+      <li>
+        <%= f.radio_button :status, :approved %>
+        <%= f.label :status, value: :approved do %>
+          <%= status_badge(:approved) %> Approved users
+        <% end %>
+      </li>
+    </ul>
+  </fieldset>
+
+  <%= f.text_area :note, placeholder: "Note contains…" %>
+
+  <button type="submit">Filter</button>
+<% end %>
+
 <%= turbo_frame_tag "users" do %>
   <table>
     <thead>
@@ -51,10 +90,12 @@
   </table>
 <% end %>
 
-<%= form_with url: users_url, method: :get, id: "goto-page-form" do %>
+<%= form_with url: users_url, method: :get, id: "goto-page-form" do |f| %>
+  <%= render partial: "filter_and_search_params_hidden_fields", locals: {f: f} %>
 <% end %>
 
 <%= form_with url: users_url, method: :get do |f| %>
+  <%= render partial: "filter_and_search_params_hidden_fields", locals: {f: f} %>
   <% if @pagination_calculator.has_previous_page? %>
     <%= f.button type: "submit", name: "page", value: 1 do %>
       First
