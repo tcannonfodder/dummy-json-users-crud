@@ -51,6 +51,9 @@
   </table>
 <% end %>
 
+<%= form_with url: users_url, method: :get, id: "goto-page-form" do %>
+<% end %>
+
 <%= form_with url: users_url, method: :get do |f| %>
   <% if @pagination_calculator.has_previous_page? %>
     <%= f.button type: "submit", name: "page", value: 1 do %>
@@ -62,10 +65,10 @@
     <% end %>
   <% end %>
 
-  <%= f.label "Page", for: "page-goto" %>
-  <%= f.text_field :page, value: @pagination_calculator.current_page, id: "page-goto" %>
+  <label for="page-goto">Page</label>
+  <%= text_field_tag :page, @pagination_calculator.current_page, id: "page-goto", form: "goto-page-form" %>
   of <%= @pagination_calculator.last_page_number %>
-  <%= f.button "Go", name: nil, type: "submit" %>
+  <button type="submit" form='goto-page-form'>Go</button>
 
   <% if @pagination_calculator.has_next_page? %>
     <%= f.button type: "submit", name: "page", value: @pagination_calculator.next_page do %>
