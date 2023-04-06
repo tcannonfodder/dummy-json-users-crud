@@ -11,9 +11,6 @@ class UsersController < ApplicationController
     @users = current_page_association
   end
 
-  def new
-  end
-
   def create
   end
 

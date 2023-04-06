@@ -1,0 +1,56 @@
+<%= form_with model: user, data: { turbo_stream: true } do |f| %>
+  <%= form_with model: user, data: { turbo_stream: true } do |f| %>
+    <fieldset>
+      <legend>User basics</legend>
+      <table>
+        <tr><th><%= f.label :first_name, "First name" %></th><td><%= f.text_field :first_name, required: true, placeholder: "Grace", autocomplete: "given-name" %>
+        <tr><th><%= f.label :last_name, "Last name" %></th><td><%= f.text_field :last_name, required: true, placeholder: "Hopper", autocomplete: "family-name" %></td></tr>
+        <tr><th><%= f.label :email, "Email" %></th><td><%= f.email_field :email, required: true, placeholder: "grace@example.com", autocomplete: "email" %></td></tr>
+        <tr><th><%= f.label :domain, "Domain" %></th><td><%= f.text_field :domain, required: true, placeholder: "example.com", autocomplete: "email" %></td></tr>
+        <tr><th><%= f.label :ip_address, "IP Address" %></th><td><%= f.text_field :ip_address, required: true, placeholder: "127.0.0.1" %></td></tr>
+        <tr><th><%= f.label :mac_address, "MAC Address" %></th><td><%= f.text_field :ip_address, required: true, placeholder: "00:25:96:12:34:56" %></td></tr>
+
+        <tr><th><%= f.label :user_agent, "User Agent" %></th><td><%= f.text_area :user_agent, placeholder: "Mozilla/5.0 (compatible; YandexAccessibilityBot/3.0; +http://yandex.com/bots)" %></td></tr>
+        </td></tr>
+      </table>
+    </fieldset>
+    <fieldset>
+      <legend>Status</legend>
+      <ul>
+        <li>
+          <%= f.radio_button :status, :unknown %>
+          <%= f.label :status, value: :unknown do %>
+            <%= status_badge(:unknown) %> Unknown
+          <% end %>
+        </li>
+        <li>
+          <%= f.radio_button :status, :warn %>
+          <%= f.label :status, value: :warn do %>
+            <%= status_badge(:warn) %> Warn
+          <% end %>
+        </li>
+        <li>
+          <%= f.radio_button :status, :alert %>
+          <%= f.label :status, value: :alert do %>
+            <%= status_badge(:alert) %> Alert
+          <% end %>
+        </li>
+        <li>
+          <%= f.radio_button :status, :approved %>
+          <%= f.label :status, value: :approved do %>
+            <%= status_badge(:approved) %> Approved
+          <% end %>
+        </li>
+      </ul>
+    </fieldset>
+
+    <table>
+      <thead><tr><th><%= f.label :notes %></th></tr></thead>
+      <tbody><tr><td><%= f.text_area :notes, placeholder: "Any security notes here…" %></td></tr></tbody>
+    </table>
+
+    <section class="actions">
+      <%= f.button "Record User", type: "submit" %>
+    </section>
+  <% end %>
+<% end %>

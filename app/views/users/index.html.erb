@@ -133,3 +133,8 @@
     <% end %>
   <% end %>
 <% end %>
+
+<section>
+  <h2>Record a user</h2>
+  <%= render partial: "add_user_form", locals: {user: User.new} %>
+</section>
