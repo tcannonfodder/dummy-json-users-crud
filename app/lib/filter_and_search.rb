@@ -3,6 +3,18 @@ class FilterAndSearch
 
   attr_accessor :status, :note_presence, :note, :email, :name
 
+  def note_presence?
+    ActiveModel::Type::Boolean.new.serialize(note_presence)
+  end
+
+  def note_presence
+    if note.present?
+      @note_presence = true
+    end
+
+    return @note_presence
+  end
+
   def filter(scope:)
     if status.present?
       scope = scope.where(status: status)
