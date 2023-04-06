@@ -20,10 +20,10 @@ class FilterAndSearch
       scope = scope.where(status: status)
     end
 
-    if note_presence
-      scope = scope.where("note IS NOT NULL")
+    if note_presence?
+      scope = scope.where("notes IS NOT NULL AND notes != ''")
     elsif note.present?
-      scope = scope.where("LOWER(note) LIKE LOWER(?)", "%#{ApplicationRecord.sanitize_sql_like(note)}%")
+      scope = scope.where("LOWER(notes) LIKE LOWER(?)", "%#{ApplicationRecord.sanitize_sql_like(note)}%")
     end
 
     if email.present?
