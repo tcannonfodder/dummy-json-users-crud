@@ -66,7 +66,11 @@
     </ul>
   </fieldset>
 
+  <%= f.check_box :note_presence %> <%= f.label :note_presence, "Has a note" %>
   <%= f.text_area :note, placeholder: "Note contains…" %>
+
+  <%= f.search_field :name, placeholder: "Grace Hopper" %>
+  <%= f.search_field :email, placeholder: "grace@example.com" %>
 
   <button type="submit">Filter</button>
 <% end %>
