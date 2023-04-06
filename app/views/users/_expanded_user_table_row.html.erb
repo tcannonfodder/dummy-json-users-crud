@@ -48,8 +48,10 @@
             </li>
           </ul>
         </fieldset>
-
-        <%= f.text_area :notes, placeholder: "Any security notes here…" %>
+        <table>
+          <thead><tr><th><%= f.label :notes %></th></tr></thead>
+          <tbody><tr><td><%= f.text_area :notes, placeholder: "Any security notes here…" %></td></tr></tbody>
+        </table>
 
         <section class="actions">
           <%= f.button "Cancel", type: :submit, formaction: collapse_user_path(user), formmethod: :get %>
