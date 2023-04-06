@@ -19,7 +19,7 @@ class FilterAndSearch
     end
 
     if name.present?
-      scope = scope.where("LOWER(name) LIKE LOWER(?)", "%#{ApplicationRecord.sanitize_sql_like(name)}%")
+      scope = scope.where("LOWER(first_name || last_name) LIKE LOWER(?)", "%#{ApplicationRecord.sanitize_sql_like(name)}%")
     end
 
     return scope
