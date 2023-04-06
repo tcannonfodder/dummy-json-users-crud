@@ -66,11 +66,19 @@
     </ul>
   </fieldset>
 
-  <%= f.check_box :note_presence %> <%= f.label :note_presence, "Has a note" %>
-  <%= f.text_area :note, placeholder: "Note contains…" %>
+  <fieldset>
+    <legend>Notes</legend>
+    <p><%= f.check_box :note_presence %> <%= f.label :note_presence, "Has a note" %></p>
+    <p><%= f.text_area :note, placeholder: "Note contains…" %></p>
+  </fieldset>
 
-  <%= f.search_field :name, placeholder: "Grace Hopper" %>
-  <%= f.search_field :email, placeholder: "grace@example.com" %>
+  <fieldset>
+    <legend>User details</legend>
+    <table>
+      <tr><th><%= f.label :name, "Name" %></th><td><%= f.search_field :name, placeholder: "Grace Hopper" %></td></tr>
+      <tr><th><%= f.label :email, "Email" %></th><td><%= f.search_field :email, placeholder: "grace@example.com" %></td></tr>
+    </table>
+  </fieldset>
 
   <button type="submit">Filter</button>
 <% end %>
