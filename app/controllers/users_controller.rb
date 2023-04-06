@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   PER_PAGE = 20
-  before_action :build_pagination_calculator, only: [:index]
   before_action :build_filter_and_search, only: [:index]
+  before_action :build_pagination_calculator, only: [:index]
   before_action :load_user, only: [:expand, :collapse, :show, :edit, :update, :destroy]
   before_action :load_bulk_action_users, only: [:destroy_multiple, :update_multiple]
 
@@ -101,7 +101,7 @@ class UsersController < ApplicationController
   end
 
   def base_association
-    User.all
+    @filter_and_search.filter(scope: User.all)
   end
 
   def current_page_association
