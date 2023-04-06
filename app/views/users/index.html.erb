@@ -1,37 +1,5 @@
 <h1>User Audit Log</h1>
 
-<%= form_with id: "bulk-actions" do |f| %>
-  <ul>
-    <li>
-      <%= f.button name: bulk_actions_status_field_name, value: :unknown, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users as unknown?"} do %>
-        Mark selected as <%= status_badge(:unknown) %> Unknown
-      <% end %>
-    </li>
-    <li>
-      <%= f.button name: bulk_actions_status_field_name, value: :warn, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users with a warning?"} do %>
-        Mark selected with a <%= status_badge(:warn) %> warning
-      <% end %>
-    </li>
-    <li>
-      <%= f.button name: bulk_actions_status_field_name, value: :alert, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users with an alert?"} do %>
-        Mark selected with an <%= status_badge(:alert) %> Alert
-      <% end %>
-    </li>
-
-    <li>
-      <%= f.button name: bulk_actions_status_field_name, value: :approved, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users as approved?"} do %>
-        Mark selected as <%= status_badge(:approved) %> Approved
-      <% end %>
-    </li>
-
-    <li>
-      <%= f.button name: nil, type: "submit", formmethod: :delete, formaction: destroy_multiple_users_url, data: {turbo_confirm: "Are you sure you want to delete these users?"} do %>
-        Delete selected
-      <% end %>
-    </li>
-  </ul>
-<% end %>
-
 <%= form_with model: @filter_and_search, url: users_url, method: :get do |f| %>
   <h2>Filter &amp; Search</h2>
   <fieldset>
@@ -81,6 +49,38 @@
   </fieldset>
 
   <button type="submit">Filter</button>
+<% end %>
+
+<%= form_with id: "bulk-actions" do |f| %>
+  <ul>
+    <li>
+      <%= f.button name: bulk_actions_status_field_name, value: :unknown, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users as unknown?"} do %>
+        Mark selected as <%= status_badge(:unknown) %> Unknown
+      <% end %>
+    </li>
+    <li>
+      <%= f.button name: bulk_actions_status_field_name, value: :warn, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users with a warning?"} do %>
+        Mark selected with a <%= status_badge(:warn) %> warning
+      <% end %>
+    </li>
+    <li>
+      <%= f.button name: bulk_actions_status_field_name, value: :alert, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users with an alert?"} do %>
+        Mark selected with an <%= status_badge(:alert) %> Alert
+      <% end %>
+    </li>
+
+    <li>
+      <%= f.button name: bulk_actions_status_field_name, value: :approved, type: "submit", formmethod: :patch, formaction: update_multiple_users_url, data: {turbo_confirm: "Are you sure you want to mark these users as approved?"} do %>
+        Mark selected as <%= status_badge(:approved) %> Approved
+      <% end %>
+    </li>
+
+    <li>
+      <%= f.button name: nil, type: "submit", formmethod: :delete, formaction: destroy_multiple_users_url, data: {turbo_confirm: "Are you sure you want to delete these users?"} do %>
+        🚮 Delete selected
+      <% end %>
+    </li>
+  </ul>
 <% end %>
 
 <%= turbo_frame_tag "users" do %>
